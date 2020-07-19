@@ -1,0 +1,42 @@
+<nb-card status="danger">
+    <nb-card-header>Accounts
+        <button nbButton class="card-header-button" (click)="addOrEditAccount('Add')" status="warning">Add Account</button>
+    </nb-card-header>
+    <nb-card-body>
+        <table class="responstable" datatable>
+            <thead>
+                <tr>
+                    <th>NAME &amp; LOGO</th>
+                    <th>INDUSTRY</th>
+                    <th>COMPANY OWNER</th>
+                    <th>PHONE NO</th>
+                    <th>CITY</th>
+                    <th>COUNTRY/REGION</th>
+                    <th>CREATE DATE</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let information of accounts">
+
+
+
+                    <td>{{information.companyDomainName}}</td>
+                    <td>{{information.industry}}</td>
+                    <td>{{information.companyOwner}}</td>
+                    <td>{{information.phoneNumber}}</td>
+                    <td>{{information.city}}</td>
+                    <td>{{information.state}}</td>
+                    <td>{{information.createdDate | date: medium}}</td>
+                    <td>
+                        <nb-icon icon="menu" nbContextMenuPlacement="left" (click)="setId(information._id)" nbContextMenuTag="my-account-menu" [nbContextMenu]="actions"></nb-icon>
+
+                    </td>
+                </tr>
+                <tr *ngIf="accounts?.length == 0">
+                    <td colspan="8" style="text-align: center">No data!</td>
+                </tr>
+            </tbody>
+        </table>
+    </nb-card-body>
+</nb-card>

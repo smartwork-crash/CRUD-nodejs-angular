@@ -1,0 +1,46 @@
+<nb-card status="danger">
+    <nb-card-header>{{action}} Contacts Details
+        <span class="cursor" style="float: right">
+            <nb-icon icon="close" (click)="close()"></nb-icon>
+        </span>
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="contactForm" (ngSubmit)="addContact($event)">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label>FULL NAME</label>
+                    <input formControlName="fullName" type="text" nbInput fullWidth placeholder="FULL NAME">
+                </div>
+                <div class="grid-item">
+                    <label>TITLE</label>
+                    <input formControlName="title" type="text" nbInput fullWidth placeholder="TITLE">
+                </div>
+                <div class="grid-item">
+                    <label>ORGANIZATION</label>
+                    <input formControlName="organization" type="text" nbInput fullWidth placeholder="ORGANIZATION">
+                </div>
+                <div class="grid-item">
+                    <label>EMAIL ADDRESS</label>
+                    <input formControlName="email" type="text" nbInput fullWidth placeholder="EMAIL ADDRESS">
+                </div>
+                <div class="grid-item">
+                    <label>PHONE NUMBER</label>
+                    <input formControlName="phone" type="text" nbInput fullWidth placeholder="PHONE NUMBER">
+                </div>
+
+                <div class="grid-item">
+                    <label>FACEBOOK ID</label>
+                    <input formControlName="facebookId" type="text" nbInput fullWidth placeholder="FACEBOOK ID">
+                </div>
+                <div class="grid-item">
+                    <label>TWITTER ID</label>
+                    <input formControlName="twitterId" type="text" nbInput fullWidth placeholder="TWITTER ID">
+                </div>
+                <div class="grid-item"> 
+                    <button nbButton class="card-header-button" type="submit" [disabled]="!contactForm.valid" status="warning">{{action}}</button>
+                    <button nbButton class="card-header-button" style="margin-right: 5px" type="button" (click)="close()">Close</button>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

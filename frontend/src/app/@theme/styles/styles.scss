@@ -1,0 +1,143 @@
+/*!
+ * Copyright (c) Akveo 2019. All Rights Reserved.
+ * Licensed under the Single Application / Multi Application License.
+ * See LICENSE_SINGLE_APP / LICENSE_MULTI_APP in the 'docs' folder for license information on type of purchased license.
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+};
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$table-breakpoint: 480px;
+$table-outer-border: 1px solid rgb(188, 202, 204);
+$table-cell-border: 1px solid #D9E4E6;
+// Extra options for table style (parse these arguments when including your mixin)
+$table-border-radius: 0px;
+$table-header-background-color: #D9E4E6;
+$table-header-text-color: black;
+
+@mixin responstable(
+  $breakpoint: $table-breakpoint,
+  $outer-border: $table-outer-border,
+  $cell-border: $table-cell-border,
+  $border-radius: none,
+  $highlight-color: #eff7ff,
+  $header-border: $table-cell-border) {
+  
+  .responstable {
+    margin: 0.75em 0;
+    width: 100%;
+    overflow: hidden;  
+    border-radius: $border-radius;
+    border: $outer-border;
+  
+    tr {
+      border: $cell-border; 
+      &:nth-child(odd) { // highlight the odd rows with a color
+        background-color: $highlight-color;
+      }  
+    }
+  
+    th {
+      padding: 0.5em;  
+      background-color: $table-header-background-color;
+      color: $table-header-text-color;
+      &:first-child { // show the first table header for mobile
+        display: table-cell;
+        text-align: center;
+      }
+      &:nth-child(2) { // show the second table header but replace the content with the data-th from the markup for mobile
+        display: table-cell;
+        span {display:none;}
+      }
+      
+      
+    }
+  
+    td {
+      display: block; // display the table data as one block for mobile
+      word-wrap: break-word;
+      max-width: 7em;
+      &:first-child { 
+        display: table-cell; // display the first one as a table cell (radio button) for mobile
+        border-right: $cell-border;
+      }
+      @media (min-width: $breakpoint) {
+        border: $cell-border;
+      }
+    }
+  
+    th, td {
+      text-align: left;
+      margin: .25em .25em;  
+      @media (min-width: $breakpoint) {
+        display: table-cell; // show the table as a normal table for tablet and desktop
+        padding: .5em;
+      }
+    }  
+  }    
+}
+
+// Include the mixin (with extra options as overrides)
+
+@include responstable(
+  $border-radius: $table-border-radius);
+
+.card-header-button {
+    float: right
+}
+
+.cursor :hover {
+  cursor: pointer !important;
+}
+
+.grid-container {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+.grid-item {
+  padding: 2px;
+  font-size: 30px;
+  text-align: left;
+}
+
+nb-dialog-container {
+  position: relative;
+  right: -550px;
+}
+

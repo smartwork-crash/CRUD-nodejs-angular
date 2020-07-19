@@ -1,0 +1,50 @@
+<nb-card status="danger">
+    <nb-card-header>{{action}} Account
+        <span class="cursor" style="float: right">
+            <nb-icon icon="close" (click)="close()"></nb-icon>
+        </span>
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="accountForm" (ngSubmit)="addAccount($event)">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label>COMPANY DOMAIN NAME</label>
+                    <input formControlName="companyDomainName" type="text" nbInput fullWidth placeholder="COMPANY DOMAIN NAME">
+                </div>
+                <div class="grid-item">
+                    <label>INDUSTRY</label>
+                    <input formControlName="industry" type="text" nbInput fullWidth placeholder="INDUSTRY">
+                </div>
+                <div class="grid-item">
+                    <label>COMPANY OWNER</label>
+                    <input formControlName="companyOwner" type="text" nbInput fullWidth placeholder="COMPANY OWNER">
+                </div>
+                <div class="grid-item">
+                    <label>PHONE NUMBER</label>
+                    <input formControlName="phoneNumber" type="text" nbInput fullWidth placeholder="PHONE NUMBER">
+                </div>
+                <div class="grid-item">
+                    <label>CITY</label>
+                    <input formControlName="city" type="text" nbInput fullWidth placeholder="CITY">
+                </div>
+
+                <div class="grid-item">
+                    <label>STATE/REGION</label>
+                    <input formControlName="state" type="text" nbInput fullWidth placeholder="STATE/REGION">
+                </div>
+                <div class="grid-item">
+                    <label>POSTAL CODE</label>
+                    <input formControlName="postalCode" type="text" nbInput fullWidth placeholder="POSTAL CODE">
+                </div>
+                <div class="grid-item">
+                    <label>LINKEDIN COMPANY PAGE</label>
+                    <input formControlName="linkedIn" type="text" nbInput fullWidth placeholder="https://www.linkedin.com">
+                </div>
+                <div class="grid-item">
+                    <button nbButton class="card-header-button" [disabled]="!accountForm.valid" type="submit" status="warning">{{action}}</button>
+                    <button nbButton class="card-header-button" style="margin-right: 5px" type="button" (click)="close()">Close</button>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

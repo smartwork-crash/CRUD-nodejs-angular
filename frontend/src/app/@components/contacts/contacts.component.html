@@ -1,0 +1,41 @@
+<nb-card status="danger">
+    <nb-card-header>Contacts
+        <button nbButton class="card-header-button" (click)="addOrEditContact('Add')" status="warning">Add Contacts</button>
+    </nb-card-header>
+    <nb-card-body>
+        <table class="responstable" datatable>
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>TITLE</th>
+                    <th>ORGANIZATION</th>
+                    <th>EMAIL ADDRESS</th>
+                    <th>PHONE</th>
+                    <th>FACEBOOK ID</th>
+                    <th>TWITTER ID</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let information of contacts">
+
+
+
+                    <td>{{information.fullName}}</td>
+                    <td>{{information.title}}</td>
+                    <td>{{information.organization}}</td>
+                    <td>{{information.email}}</td>
+                    <td>{{information.phone}}</td>
+                    <td>{{information.facebookId}}</td>
+                    <td>{{information.twitterId}}</td>
+                    <td>
+                        <nb-icon icon="menu" nbContextMenuPlacement="left" (click)="setId(information._id)" nbContextMenuTag="my-contact-menu" [nbContextMenu]="actions"></nb-icon>
+                    </td>
+                </tr>
+                <tr *ngIf="contacts?.length == 0">
+                    <td colspan="8" style="text-align: center">No data!</td>
+                </tr>
+            </tbody>
+        </table>
+    </nb-card-body>
+</nb-card>
